@@ -98,6 +98,7 @@ namespace SetGuidConverter
             if (this.HandleFaultedTask(res))
             {
                 EnableUi = true;
+                converter.Dispose();
                 return;
             }
             if (res.Result)
@@ -125,6 +126,7 @@ namespace SetGuidConverter
             }
             finally
             {
+                converter.Dispose();
                 EnableUi = true;
             }
         }
