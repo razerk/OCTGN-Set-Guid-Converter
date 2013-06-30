@@ -9,7 +9,7 @@ namespace SetGuidConverter
 
     public class Converter: IDisposable
     {
-        public Action<string> OnEvent;
+        public event Action<string> OnEvent;
         internal string Directory { get; private set; }
 
         public Converter(string directory)

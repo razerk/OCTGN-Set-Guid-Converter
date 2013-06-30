@@ -84,6 +84,7 @@ namespace SetGuidConverter
             {
                 EnableUi = false;
                 var conv = new Converter(Directory);
+                conv.OnEvent += s => LogItems.Insert(0, s);
                 conv.Verify().ContinueWith(x => this.VerifyComplete(conv, x));
             }
             catch (Exception e)
