@@ -7,7 +7,7 @@ namespace SetGuidConverter
 {
     using System.Threading.Tasks;
 
-    public class Converter
+    public class Converter: IDisposable
     {
         public Action<string> OnEvent;
         internal string Directory { get; private set; }
@@ -43,6 +43,15 @@ namespace SetGuidConverter
             if (OnEvent != null)
             {
                 OnEvent(String.Format(str, args));
+            }
+        }
+
+        public void Dispose()
+        {
+            if (OnEvent == null) return;
+            foreach (var a in OnEvent.GetInvocationList())
+            {
+                this.OnEvent -= a as Action<string>;
             }
         }
     }

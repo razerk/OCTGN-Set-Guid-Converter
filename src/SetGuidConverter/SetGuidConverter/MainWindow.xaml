@@ -6,6 +6,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="100*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -17,5 +18,8 @@
         </StackPanel>
         <ListBox ItemsSource="{Binding Path=LogItems}" Grid.Row="1">
         </ListBox>
+        <Grid Grid.Row="3">
+            <Button Height="30" Width="100" HorizontalAlignment="Right" Click="ConvertClick">Convert</Button>
+        </Grid>
     </Grid>
 </Window>
