@@ -1,0 +1,21 @@
+﻿<Window x:Class="SetGuidConverter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Set Guid Converter" Height="350" Width="525" Name="This" DataContext="{Binding ElementName=This}">
+    <Grid Margin="10" IsEnabled="{Binding Path=EnableUi}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Game Directory</Label>
+                <Grid Width="10"></Grid>
+                <TextBox Text="{Binding Directory}" Width="300" IsEnabled="False"></TextBox>
+                <Button Click="PickDirectoryClick" Width="100">Pick Directory</Button>
+            </StackPanel>
+        </StackPanel>
+        <ListBox ItemsSource="{Binding Path=LogItems}" Grid.Row="1">
+        </ListBox>
+    </Grid>
+</Window>
