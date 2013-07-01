@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Set Guid Converter" 
-        MinHeight="350" MinWidth="532" 
-        Height="350" Width="532" 
+        MinHeight="350" MinWidth="542" 
+        Height="350" Width="542" 
         Name="This" DataContext="{Binding ElementName=This}">
     <Grid Margin="10" IsEnabled="{Binding Path=EnableUi}">
         <Grid.RowDefinitions>

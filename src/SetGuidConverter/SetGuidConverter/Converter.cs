@@ -79,6 +79,8 @@ namespace SetGuidConverter
 
         internal bool RealVerify()
         {
+            if(String.IsNullOrWhiteSpace(Directory))
+                throw new MessageException("You must pick a directory.");
             var dr = new DirectoryInfo(Directory);
             if(!dr.Exists)
                 throw new MessageException("Directory {0} doesn't exist!",Directory);
@@ -104,13 +106,15 @@ namespace SetGuidConverter
                 {
                     foreach (var e in m.Elements())
                     {
-                        if (m.Name.LocalName.Equals("marker", StringComparison.InvariantCultureIgnoreCase)
-                            || m.Name.LocalName.Equals("card", StringComparison.InvariantCultureIgnoreCase))
+                        if (e.Name.LocalName.Equals("marker", StringComparison.InvariantCultureIgnoreCase)
+                            || e.Name.LocalName.Equals("card", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            var oldStr = m.Attribute("id").Value;
+                            var idattr = e.Attribute("id");
+                                //.First(x => x.Name.LocalName.Equals("id", StringComparison.InvariantCultureIgnoreCase));
+                            var oldStr = idattr.Value;
                             var old = Guid.Parse(oldStr);
                             var ng = Guid.NewGuid();
-                            m.SetAttributeValue("id", ng.ToString().ToLowerInvariant());
+                            e.SetAttributeValue("id", ng.ToString().ToLowerInvariant());
                             ret.Add(old,ng);
                         }
                     }

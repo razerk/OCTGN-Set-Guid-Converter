@@ -4,6 +4,7 @@ namespace SetGuidConverter
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace SetGuidConverter
     {
         private string directory;
 
-        private List<string> logItems;
+        private ObservableCollection<string> logItems;
 
         private bool enableUi;
 
@@ -34,7 +35,7 @@ namespace SetGuidConverter
             }
         }
 
-        public List<string> LogItems
+        public ObservableCollection<string> LogItems
         {
             get
             {
@@ -66,8 +67,9 @@ namespace SetGuidConverter
         {
             enableUi = true;
             InitializeComponent();
-            LogItems = new List<string>();
+            LogItems = new ObservableCollection<string>();
             Directory = "";
+            Directory = @"C:\Programming\Android-Netrunner-OCTGN\o8g";
         }
 
         public void PickDirectoryClick(object sender, RoutedEventArgs routedEventArgs)
@@ -82,9 +84,10 @@ namespace SetGuidConverter
         {
             try
             {
+                LogItems.Clear();
                 EnableUi = false;
                 var conv = new Converter(Directory);
-                conv.OnEvent += s => LogItems.Insert(0, s);
+                conv.OnEvent += s => Log(s);
                 conv.Verify().ContinueWith(x => this.VerifyComplete(conv, x));
             }
             catch (Exception e)
